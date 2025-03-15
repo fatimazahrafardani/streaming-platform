@@ -18,8 +18,8 @@ return new class extends Migration
         $table->string('url');
         $table->string('thumbnail');
         $table->unsignedBigInteger('views_count')->default(0);
-        $table->unsignedBigInteger('video_id')->nullable();  // Allows nullable, adjust as needed
-        $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
+        $table->unsignedBigInteger('user_id');
+        $table->foreign('user_id')->references('id')->on('persones')->onDelete('cascade');
         $table->timestamps();
     });
 } 

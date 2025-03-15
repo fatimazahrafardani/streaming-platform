@@ -9,13 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+    public function up()
+{
+    Schema::create('comments', function (Blueprint $table) {
+        $table->id();
+        $table->text('content');
+        $table->unsignedBigInteger('user_id');
+        $table->foreign('user_id')->references('id')->on('persones')->onDelete('cascade');
+        $table->unsignedBigInteger('video_id');
+        $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.
